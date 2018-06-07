@@ -1,0 +1,22 @@
+// define the fonts to include
+$fonts: (
+		'Roboto': ('roboto', (
+				'Roboto-Regular' normal normal,
+				'Roboto-Italic' normal italic
+		))
+);
+
+// include font faces
+@each $name, $src in $fonts {
+	$directory: nth($src, 1);
+	$locals: nth($src, 2);
+
+	@each $local in $locals {
+		$weight: nth($local, 2);
+		$style: nth($local, 3);
+		$local: nth($local, 1);
+		$path: $directory + '/' + $local;
+
+		@include font-face($name, $local, $path, $weight, $style);
+	}
+}

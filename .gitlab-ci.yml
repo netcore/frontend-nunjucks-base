@@ -1,0 +1,74 @@
+image: jekyll/builder
+
+before_script:
+  - echo "[$CI_JOB_NAME] Job for $CI_PROJECT_NAME started by $GITLAB_USER_NAME"
+
+stages:
+  - install
+  - compile
+  - deploy
+
+run-install:
+  stage: install
+  tags:
+    - docker-runner
+  script:
+    - apk update && apk add -u yarn libpng-dev libjpeg-turbo-dev libjpeg-turbo-utils zip
+    - yarn
+  cache:
+    key: yarn
+    paths:
+      - node_modules
+  only:
+    - development
+    - master
+
+compile-project:
+  stage: compile
+  tags:
+    - docker-runner
+  script:
+    - echo "compile assets"
+    - apk update && apk add -u zip tzdata
+    - cp /usr/share/zoneinfo/Europe/Riga /etc/localtime
+    - echo "Europe/Riga" >  /etc/timezone
+    - date
+    - 'echo "baseurl: /$CI_PROJECT_NAME"'
+    - 'echo "url: http://html.netcore.lv"'
+    - mkdir app/public && chmod 0777 app/public
+    - yarn gulp prod
+  cache:
+    key: yarn
+    paths:
+      - node_modules
+  artifacts:
+    expire_in: 7d
+    paths:
+      - app/public
+  only:
+    - development
+    - master
+  when: on_success
+
+deploy-project:
+  stage: deploy
+  tags:
+    - shell-runner
+  before_script:
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - chmod 600 ~/.ssh/config
+    - ssh-keyscan spark.rackblaze.net >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh-add /srv/gitlab/frontend-deploy-priv.key
+  script:
+    - zip -qr app.zip app
+    - mv app.zip app
+    #- ssh -p 22 htmlnetcore@spark.rackblaze.net '(whoami)'
+    - rsync -crz --del $CI_PROJECT_DIR/app/public/ htmlnetcore@spark.rackblaze.net:/home/htmlnetcore/public_html/$CI_PROJECT_NAME/
+  only:
+    - development
+    - master
+  when: on_success

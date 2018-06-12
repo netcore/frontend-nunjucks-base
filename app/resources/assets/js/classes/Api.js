@@ -21,8 +21,8 @@ export default class API {
 	static request(json, endpoint, method, data) {
 		return new Promise((resolve, reject) => {
 			let settings = {
-				method: json ? 'GET' : method,
-				url: json ? json : server + endpoint
+				method: json && this.isHTMLEnv() ? 'GET' : method,
+				url: json && this.isHTMLEnv() ? json : server + endpoint
 			}
 
 			if (settings.method === 'GET') {

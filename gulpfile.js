@@ -95,7 +95,7 @@ gulp.task('compile:sass', () => {
 		}))
 		.pipe(cleanCSS({ compatibility: 'ie9' }))
 		.pipe(gulp.dest(paths.dest.css))
-		.pipe(browserSync.stream({ once: true }))
+		.pipe(browserSync.stream())
 })
 
 // task: build:img

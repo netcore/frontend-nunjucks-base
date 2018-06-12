@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a01589b-5889-4fa3-883e-1cfba64e4852" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/resources/assets/js/classes/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/resources/assets/js/classes/Api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/resources/assets/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/resources/assets/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/resources/views/_layouts/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/resources/views/_layouts/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/resources/views/_pages/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/resources/views/_pages/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/resources/views/_pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/resources/views/_pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +23,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/resources/assets/sass/app.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="84">
               <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -52,6 +56,7 @@
         <option value="$PROJECT_DIR$/app/resources/assets/js/classes/Api.js" />
         <option value="$PROJECT_DIR$/app/resources/assets/sass/vendor/bootstrap.scss" />
         <option value="$PROJECT_DIR$/app/resources/assets/sass/app.scss" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -202,12 +207,12 @@
       <option name="presentableId" value="Default" />
       <updated>1528698304624</updated>
       <workItem from="1528698306027" duration="1607000" />
-      <workItem from="1528785321895" duration="57000" />
+      <workItem from="1528785321895" duration="174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1664000" />
+    <option name="totallyTimeSpent" value="1781000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -288,6 +293,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
         </state>
       </provider>
     </entry>

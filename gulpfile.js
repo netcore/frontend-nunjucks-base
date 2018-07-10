@@ -43,7 +43,7 @@ const paths = {
 		],
 		js: [
 			resourcesFolder + 'assets/js/app.js',
-			resourcesFolder + 'assets/js/**/*.js'
+			resourcesFolder + 'assets/js/**/*.{js,vue}'
 		],
 		svg: resourcesFolder + 'assets/svg/**/*.{jpg,jpeg,png,gif,svg}',
 		json: [

@@ -1,6 +1,6 @@
-import './bootstrap.js'
-import './classes/Validation.js'
-import API from './classes/Api.js'
+import './bootstrap'
+import './classes/Validation'
+import API from './classes/Api'
 
 Vue.prototype.$api = API
 Vue.prototype.$http = axios

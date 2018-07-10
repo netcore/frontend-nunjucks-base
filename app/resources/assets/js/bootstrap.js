@@ -1,10 +1,6 @@
 // polyfills
 import 'babel-polyfill'
 
-// jquery
-import jQuery from 'jquery'
-global.$ = jQuery
-
 // lodash
 import 'lodash'
 

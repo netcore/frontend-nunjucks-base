@@ -13,7 +13,8 @@ $(() => {
 		input
 			.parents('.form-group, .form-check')
 			.addClass('has-error')
-			.append('<small class="form-text">' + error + '</small>')
+			.find('.input-error')
+			.html(error)
 
 		form
 			.addClass('has-errors')
@@ -28,8 +29,8 @@ $(() => {
 		input
 			.parents('.form-group, .form-check')
 			.removeClass('has-error')
-			.find('.form-text')
-			.remove()
+			.find('.input-error')
+			.html('')
 
 		form.removeClass('success')
 
@@ -57,7 +58,7 @@ $(() => {
 
 					break
 				case 'radio':
-					if (!form.find('input.form-check-input[name="' + input.attr('name') + '"]:checked').length) {
+					if (!form.find('input[name="' + input.attr('name') + '"]:checked').length) {
 						appendError(input, form)
 					}
 
@@ -91,8 +92,8 @@ $(() => {
 	}
 
 	// validate input on focus out
-	$('form.validate').on('focusout', 'input, textarea, select', function () {
-		let self = $(this)
+	$('form.validate').on('focusout', 'input, textarea, select', (e) => {
+		let self = $(e.currentTarget)
 
 		if (self.val().length) {
 			validateInput(self, self.parents('form'))
@@ -100,15 +101,15 @@ $(() => {
 	})
 
 	// validate input on change
-	$('form.validate').on('change', 'input, textarea, select', function () {
-		let self = $(this)
+	$('form.validate').on('change', 'input, textarea, select', (e) => {
+		let self = $(e.currentTarget)
 
 		validateInput(self, self.parents('form'))
 	})
 
 	// validate input on keyup
-	$('form.validate').on('keyup', 'input, textarea, select', function () {
-		let self = $(this)
+	$('form.validate').on('keyup', 'input, textarea, select', (e) => {
+		let self = $(e.currentTarget)
 
 		if (self.parents('.form-group').hasClass('has-error')) {
 			validateInput(self, self.parents('form'))
@@ -116,11 +117,17 @@ $(() => {
 	})
 
 	// submit form
-	$('form.validate').on('submit', function (event) {
-		event.preventDefault()
+	$('form.validate').on('submit', (e) => {
+		e.preventDefault()
 
-		let submitBtn = $(this).find('.submit-form')
-		let form = $(this)
+		let submitBtn = $(e.currentTarget).find('.submit-form')
+		let form = $(e.currentTarget)
+
+		// check if action or method attribute is set
+		if (!form.attr('action') || !form.attr('method')) {
+			alert('Action and Method attributes must be specified')
+			return
+		}
 
 		// go through all elements and validate
 		$.each(form.find('input, textarea, select'), function (index, item) {
@@ -134,56 +141,53 @@ $(() => {
 
 			submitBtn
 				.addClass('loading')
-				.append('<span class="loader"></span>')
 				.prop('disabled', true)
 
-			$.ajax({
+			axios({
+				method: form.attr('method'),
 				url: form.attr('action'),
-				type: form.attr('method'),
-				data: formData,
-				processData: false,
-				contentType: false
-			}).done(function (response, textStatus, xhr) {
+				data: formData
+			}).then(res => {
 				submitBtn
 					.removeClass('loading')
 					.prop('disabled', false)
-					.find('.loader')
-					.remove()
 
-				if (xhr.status == 200) {
+				if (res.status === 200) {
 					form.addClass('success')
 
 					let $successAlert = form.find('.form-alert-success')
 
-					if ($successAlert.length) {
-						$successAlert.find('.response-message').html(response.message)
+					if ($successAlert.length && res.data.message) {
+						$successAlert.find('.response-message').html(res.data.message)
 
 						scrollForm($successAlert.offset().top - 10)
 					}
 				}
 
-				if (response.redirect) {
+				if (res.data.redirect) {
 					submitBtn.prop('disabled', true)
 
-					setTimeout(function () {
-						window.location = response.redirect
+					setTimeout(() => {
+						window.location = res.data.redirect
 					}, 1000)
 				} else {
 					form[0].reset()
 				}
-			}).fail(function (error) {
-				submitBtn
-					.removeClass('loading')
-					.find('.loader')
-					.remove()
+			}).catch(err => {
+				submitBtn.removeClass('loading')
 
-				$.each(form.find('input, textarea, select'), function (index, item) {
-					let name = $(item).attr('name')
+				$.each(form.find('input, textarea, select'), (e) => {
+					let name = $(e.currentTarget).attr('name')
 
-					if (error.responseJSON.errors[name]) {
-						$(item).parents('.form-group, .form-check').addClass('has-error')
+					if (err.response.data.errors[name]) {
+						$(e.currentTarget)
+							.parents('.form-group, .form-check')
+							.addClass('has-error')
 
-						$(item).parents('.form-group, .form-check').append('<small class="form-text">' + error.responseJSON.errors[name][0] + '</small>')
+						$(e.currentTarget)
+							.parents('.form-group, .form-check')
+							.find('.input-error')
+							.html(err.response.data.errors[name][0])
 					}
 				})
 

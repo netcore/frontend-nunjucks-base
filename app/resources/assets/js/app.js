@@ -10,5 +10,5 @@ new Vue({
 })
 
 $(() => {
-	console.log('Hello World')
+	console.log('%c With ❤️ from Netcore ', 'background: #222; color: #fff')
 })

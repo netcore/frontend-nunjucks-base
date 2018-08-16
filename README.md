@@ -18,7 +18,7 @@ Vendor libraries included by default: **bootstrap**, **jquery**, **vue.js**, **l
 3. Install [yarn](https://yarnpkg.com/en/docs/install)
 
 ### Project setup
-1. `git clone https://github.com/netcore/frontend-base.git <project name>`
+1. `git clone https://github.com/netcore/frontend-nunjucks-base.git <project name>`
 2. `cd <project name>`
 3. `yarn` or `yarn install`
 4. (optional) delete all `.placeholder` files

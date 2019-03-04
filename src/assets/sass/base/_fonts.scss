@@ -1,0 +1,32 @@
+// define the fonts to include
+$fonts: (
+    'Metric': ('metric', (
+        'Metric-Regular' normal normal,
+        'Metric-Light' 300 normal,
+        'Metric-Medium' 500 normal,
+        'Metric-MediumItalic' 500 italic,
+        'Metric-Italic' normal italic,
+        'Metric-LightItalic' 300 italic,
+        'Metric-Thin' 200 normal,
+        'Metric-ThinItalic' 200 italic,
+        'Metric-Semibold' 600 normal,
+        'Metric-SemiboldItalic' 600 italic,
+        'Metric-Bold' 700 normal,
+        'Metric-BoldItalic' 700 italic
+    ))
+);
+
+// include font faces
+@each $name, $src in $fonts {
+	$directory: nth($src, 1);
+	$locals: nth($src, 2);
+
+	@each $local in $locals {
+		$weight: nth($local, 2);
+		$style: nth($local, 3);
+		$local: nth($local, 1);
+		$path: $directory + '/' + $local;
+
+		@include font-face($name, $local, $path, $weight, $style);
+	}
+}

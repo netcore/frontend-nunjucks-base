@@ -1,0 +1,56 @@
+{% set title = "Navigation" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "src/views/includes/head.html" %}
+    <style>
+        .container {
+            max-width: 600px;
+            padding: 30px;
+        }
+
+        .last-update {
+            float: right;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .list-group-item {
+            pointer-events: all !important;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <main style="margin-top: 0">
+        <div class="container">
+            <div class="list-group">
+                <div class="list-group-item d-flex align-items-center justify-content-center">
+                    <img src="assets/svg/ntc-logo.svg" alt="ntc-logo">
+                </div>
+
+                <div class="list-group-item p-1">
+                    <span class="last-update">Updated: {{ date }}</span>
+                </div>
+
+                <div class="list-group-item list-group-item-action disabled bg-light py-1 d-flex align-items-center">
+                    Pages
+
+                    <a href="app.zip" class="btn btn-success ml-auto btn-sm btn-archive d-none">Archive</a>
+                </div>
+
+                <a href="homepage.html" class="list-group-item list-group-item-action">Homepage</a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    if (window.location.href.indexOf('html.netcore.lv') !== -1) {
+        document.getElementsByClassName('btn-archive')[0].classList.remove('d-none')
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "src/views/includes/head.html" %}
+</head>
+<body>
+{% include "src/views/includes/jsdisabled.html" %}
+
+<div id="app">
+    {% include "src/views/includes/header.html" %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include "src/views/includes/footer.html" %}
+</div>
+
+<!-- Scripts -->
+<script>window.environment = 'html'</script>
+<script src="vendors~main.js?{{time}}"></script>
+<script src="main.js?{{time}}"></script>
+</body>
+</html>

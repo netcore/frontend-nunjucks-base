@@ -8,7 +8,6 @@ Vendor libraries included by default: **bootstrap**, **jquery**, **vue.js**
 
 ### Requirements
 1. Install [NodeJS](https://nodejs.org/en/)
-2. Install [gulp](https://gulpjs.com)
 3. Install [yarn](https://yarnpkg.com/en/docs/install)
 
 ### Project setup
@@ -20,8 +19,6 @@ Vendor libraries included by default: **bootstrap**, **jquery**, **vue.js**
 
 ### Production
 `yarn run build:prod` to get project templates and assets ready for production
-
-_this task may take longer to finish because of image processing tasks_
 
 ### HTML
 * For template rendering we use nunjucks: ([Nunjucks](https://mozilla.github.io/nunjucks/))
